@@ -1,4 +1,4 @@
-package com.example.franchise.persistence;
+package com.example.franchise.persistence.entities;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;

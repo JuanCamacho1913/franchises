@@ -1,8 +1,10 @@
-package com.example.franchise.persistence;
+package com.example.franchise.persistence.entities;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.List;
 
 @Setter
 @Getter
@@ -10,11 +12,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "producto")
-public class Product {
+@Document(collection = "sucursal")
+public class Branch {
 
     @Id
     private String id;
     private String name;
-    private String stock;
+    private List<Product> products;
 }
