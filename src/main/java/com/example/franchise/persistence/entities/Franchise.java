@@ -12,7 +12,7 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "franquicia")
+@Document(collection = "franchiseCollection")
 public class Franchise {
 
     @Id
