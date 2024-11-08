@@ -12,7 +12,7 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "sucursal")
+@Document(collection = "branchCollection")
 public class Branch {
 
     @Id
