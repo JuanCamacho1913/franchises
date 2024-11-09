@@ -1,8 +1,9 @@
 package com.example.franchise.controller;
 
 import com.example.franchise.persistence.entities.Franchise;
+import com.example.franchise.presentation.dtos.BranchDto;
 import com.example.franchise.presentation.dtos.FranchiseDto;
-import com.example.franchise.services.interfaces.IFranchiseService;
+import com.example.franchise.domain.services.interfaces.IFranchiseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -16,7 +17,7 @@ public class FranchiseHandler {
 
     public final IFranchiseService franchiseService;
 
-    public Mono<ServerResponse> createFranchise(ServerRequest serverRequest){
+    public Mono<ServerResponse> createFranchise(ServerRequest serverRequest) {
         Mono<FranchiseDto> franchiseDtoMono = serverRequest.bodyToMono(FranchiseDto.class);
         Mono<FranchiseDto> franchiseDtoSaved = this.franchiseService.createFranchise(franchiseDtoMono);
 
@@ -24,5 +25,17 @@ public class FranchiseHandler {
                 .ok()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(franchiseDtoSaved, Franchise.class);
+    }
+
+    public Mono<ServerResponse> addBranchToFranchise(ServerRequest serverRequest) {
+        String franchiseId = serverRequest.pathVariable("idFranchise");
+        Mono<BranchDto> branchDtoMono = serverRequest.bodyToMono(BranchDto.class);
+
+        Mono<FranchiseDto> franchiseDtoResponse = this.franchiseService.addBranchToFranchise(franchiseId, branchDtoMono);
+
+        return ServerResponse
+                .ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(franchiseDtoResponse, FranchiseDto.class);
     }
 }

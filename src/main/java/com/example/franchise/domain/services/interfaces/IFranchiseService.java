@@ -1,4 +1,4 @@
-package com.example.franchise.services.interfaces;
+package com.example.franchise.domain.services.interfaces;
 
 import com.example.franchise.presentation.dtos.BranchDto;
 import com.example.franchise.presentation.dtos.FranchiseDto;
@@ -8,7 +8,7 @@ public interface IFranchiseService {
 
     public Mono<FranchiseDto> createFranchise(Mono<FranchiseDto> franchiseDto);
 
-    public Mono<FranchiseDto> addBranch(Mono<BranchDto> branchDto);
+    public Mono<FranchiseDto> addBranchToFranchise(String idFranchise, Mono<BranchDto> branchDto);
 
 
 
