@@ -1,4 +1,4 @@
-package com.example.franchise.services.interfaces;
+package com.example.franchise.domain.services.interfaces;
 
 import com.example.franchise.presentation.dtos.BranchDto;
 import com.example.franchise.presentation.dtos.ProductDto;
