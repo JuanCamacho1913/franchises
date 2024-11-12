@@ -43,8 +43,9 @@ public class FranchiseServiceImpl implements IFranchiseService {
                 .flatMap(branchDoc -> this.branchRepository.save(branchDoc));
 
         Mono<FranchiseDto> franchiseDtoMono = Mono.zip(franchiseMono, branchMono, (franchise, branch) -> {
-                    franchise.setBranches(List.of(branch));
-
+                    List<String> branches = franchise.getBranches();
+                    branches.add(branch.getId());
+                    franchise.setBranches(branches);
                     return franchise;
                 }).flatMap(franchise -> this.franchiseRepository.save(franchise))
                 .map(franchise -> this.franchiseMapper.toFranchiseDto(franchise));

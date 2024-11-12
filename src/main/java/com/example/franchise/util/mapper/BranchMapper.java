@@ -14,8 +14,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BranchMapper {
 
-    private final ProductMapper productMapper;
-
     public Branch toBranch(BranchDto branchDto){
         if (branchDto.products() == null || branchDto.products().isEmpty()){
             Branch branch = Branch.builder()
@@ -25,31 +23,20 @@ public class BranchMapper {
                     .build();
             return branch;
         }else {
-            List<Product> products = branchDto.products()
-                    .stream()
-                    .map(productDto -> this.productMapper.toProduct(productDto))
-                    .toList();
-
             Branch branch = Branch.builder()
                     .id(branchDto.id())
                     .name(branchDto.name())
-                    .products(products)
+                    .products(branchDto.products())
                     .build();
             return branch;
         }
     }
 
     public BranchDto toBranchDto(Branch branch) {
-
-        List<ProductDto> productDtos = branch.getProducts()
-                .stream()
-                .map( product -> this.productMapper.toProductoDto(product))
-                .toList();
-
         return new BranchDto(
                 branch.getId(),
                 branch.getName(),
-                productDtos
+                branch.getProducts()
         );
     }
 }
