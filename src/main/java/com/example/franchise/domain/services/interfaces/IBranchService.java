@@ -6,7 +6,7 @@ import reactor.core.publisher.Mono;
 
 public interface IBranchService {
 
-    public Mono<BranchDto> addProduct(Mono<ProductDto> addProductDto);
+    public Mono<BranchDto> addProductToBranch(String branchId, Mono<ProductDto> productDtoMono);
 
-    public Mono<BranchDto> deleteProduct(Mono<ProductDto> deleteProductDto);
+    public Mono<BranchDto> removeProductToBranch(String branchId, String productId);
 }

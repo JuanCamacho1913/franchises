@@ -7,5 +7,5 @@ import java.util.List;
 public record FranchiseDto(
         String id,
         String name,
-        List<BranchDto> branches) {
+        List<String> branches) {
 }
