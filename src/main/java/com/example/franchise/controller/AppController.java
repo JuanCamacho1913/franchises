@@ -7,18 +7,23 @@ import org.springframework.web.reactive.function.server.RequestPredicates;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
-import reactor.core.publisher.Mono;
 
 @Configuration
 @RequiredArgsConstructor
-public class ControllerFranchise {
+public class AppController {
 
     public final FranchiseHandler franchiseHandler;
+    public final BranchHandler branchHandler;
 
     @Bean
     public RouterFunction<ServerResponse> routes() {
         return RouterFunctions
-                .route(RequestPredicates.POST("v1/franchise/create"), franchiseHandler::createFranchise)
-                .andRoute(RequestPredicates.POST("/v1/franchise/branch/add/{idFranchise}"), franchiseHandler::addBranchToFranchise);
+                //Franchise
+                .route(RequestPredicates.POST("/v1/franchise/create"), franchiseHandler::createFranchise)
+                .andRoute(RequestPredicates.POST("/v1/franchise/branch/add/{idFranchise}"), franchiseHandler::addBranchToFranchise)
+                //Braches
+                .andRoute(RequestPredicates.POST("/v1/branch/product/add/{idBranch}"), branchHandler::addProductToBranch)
+                .andRoute(RequestPredicates.POST("/v1/branch/product/remove"), branchHandler::removeProductFromBranch);
+                //Product
     }
 }

@@ -7,5 +7,5 @@ import java.util.List;
 public record BranchDto(
         String id,
         String name,
-        List<ProductDto> products) {
+        List<String> products) {
 }

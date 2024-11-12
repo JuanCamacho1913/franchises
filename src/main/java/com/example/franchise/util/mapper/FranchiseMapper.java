@@ -14,8 +14,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class FranchiseMapper {
 
-    private final BranchMapper branchMapper;
-
     public Franchise toFranchise(FranchiseDto franchiseDto) {
         if (franchiseDto.branches() == null || franchiseDto.branches().isEmpty()) {
             Franchise franchise = Franchise.builder()
@@ -25,30 +23,20 @@ public class FranchiseMapper {
                     .build();
             return franchise;
         }else {
-            List<Branch> branches = franchiseDto.branches()
-                    .stream()
-                    .map(branchDto -> this.branchMapper.toBranch(branchDto))
-                    .toList();
-
             Franchise franchise = Franchise.builder()
                     .id(franchiseDto.id())
                     .name(franchiseDto.name())
-                    .branches(branches)
+                    .branches(franchiseDto.branches())
                     .build();
             return franchise;
         }
     }
 
     public FranchiseDto toFranchiseDto(Franchise franchise){
-        List<BranchDto> branchDtos = franchise.getBranches()
-                .stream()
-                .map(branch -> this.branchMapper.toBranchDto(branch))
-                .toList();
-
         return new FranchiseDto(
                 franchise.getId(),
                 franchise.getName(),
-                branchDtos
+                franchise.getBranches()
         );
     }
 }

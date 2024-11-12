@@ -18,5 +18,5 @@ public class Branch {
     @Id
     private String id;
     private String name;
-    private List<Product> products;
+    private List<String> products;
 }

@@ -18,5 +18,5 @@ public class Franchise {
     @Id
     private String id;
     private String name;
-    private List<Branch> branches;
+    private List<String> branches;
 }
