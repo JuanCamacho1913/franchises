@@ -16,7 +16,7 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class BranchHandler {
 
-    public final IBranchService branchService;
+    private final IBranchService branchService;
 
     public Mono<ServerResponse> addProductToBranch(ServerRequest serverRequest) {
         String branchId = serverRequest.pathVariable("idBranch");
