@@ -15,7 +15,7 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class FranchiseHandler {
 
-    public final IFranchiseService franchiseService;
+    private final IFranchiseService franchiseService;
 
     public Mono<ServerResponse> createFranchise(ServerRequest serverRequest) {
         Mono<FranchiseDto> franchiseDtoMono = serverRequest.bodyToMono(FranchiseDto.class);

@@ -7,7 +7,7 @@ import reactor.core.publisher.Mono;
 
 public interface IProductService {
 
-    public Mono<ProductDto> updateProductStock(Mono<String> id);
+    public Mono<ProductDto> changeProductStock(String productId, Integer newStock);
 
-    public Flux<BranchDto> getMaxStockProduct(Flux<ProductDto> productDto);
+    //public Flux<BranchDto> getMaxStockProduct(Flux<ProductDto> productDto);
 }
