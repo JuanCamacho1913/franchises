@@ -12,8 +12,9 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 @RequiredArgsConstructor
 public class AppController {
 
-    public final FranchiseHandler franchiseHandler;
-    public final BranchHandler branchHandler;
+    private final FranchiseHandler franchiseHandler;
+    private final BranchHandler branchHandler;
+    private final ProductHandler productHandler;
 
     @Bean
     public RouterFunction<ServerResponse> routes() {
@@ -23,7 +24,8 @@ public class AppController {
                 .andRoute(RequestPredicates.POST("/v1/franchise/branch/add/{idFranchise}"), franchiseHandler::addBranchToFranchise)
                 //Braches
                 .andRoute(RequestPredicates.POST("/v1/branch/product/add/{idBranch}"), branchHandler::addProductToBranch)
-                .andRoute(RequestPredicates.POST("/v1/branch/product/remove"), branchHandler::removeProductFromBranch);
+                .andRoute(RequestPredicates.POST("/v1/branch/product/remove"), branchHandler::removeProductFromBranch)
                 //Product
+                .andRoute(RequestPredicates.PUT("/v1/product/stock"), productHandler::changeProductStock);
     }
 }
