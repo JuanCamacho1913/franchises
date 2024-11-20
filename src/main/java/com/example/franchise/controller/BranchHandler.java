@@ -31,7 +31,7 @@ public class BranchHandler {
 
     public Mono<ServerResponse> removeProductFromBranch(ServerRequest serverRequest) {
         String branchId = serverRequest.queryParam("branchId")
-                .orElseThrow(() -> new BadRequestException("the branchId do not be empty nor null"));
+                .orElseThrow(() -> new BadRequestException("The branchId do not be empty nor null"));
 
         String productId = serverRequest.queryParam("productId")
                 .orElseThrow(() -> new BadRequestException("The productId do not be empty nor null"));
