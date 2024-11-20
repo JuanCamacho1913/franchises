@@ -26,6 +26,7 @@ public class AppController {
                 .andRoute(RequestPredicates.POST("/v1/branch/product/add/{idBranch}"), branchHandler::addProductToBranch)
                 .andRoute(RequestPredicates.POST("/v1/branch/product/remove"), branchHandler::removeProductFromBranch)
                 //Product
-                .andRoute(RequestPredicates.PUT("/v1/product/stock"), productHandler::changeProductStock);
+                .andRoute(RequestPredicates.PUT("/v1/product/stock"), productHandler::changeProductStock)
+                .andRoute(RequestPredicates.GET("/v1/product/stock/max"), productHandler::getLargestStockForFranquice);
     }
 }
