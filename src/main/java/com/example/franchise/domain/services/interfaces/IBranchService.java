@@ -9,4 +9,6 @@ public interface IBranchService {
     public Mono<BranchDto> addProductToBranch(String branchId, Mono<ProductDto> productDtoMono);
 
     public Mono<BranchDto> removeProductToBranch(String branchId, String productId);
+
+    public Mono<BranchDto> updateNameBranch(String idBranch, String newName);
 }
