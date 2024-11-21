@@ -62,6 +62,20 @@ public class BranchServiceImpl implements IBranchService {
 
         return branchDtoMono;
     }
+
+    @Override
+    public Mono<BranchDto> updateNameBranch(String idBranch, String newName) {
+        Mono<BranchDto> branchDtoMono = this.branchRepository.findById(idBranch)
+                .switchIfEmpty(Mono.error(new ElementNotFoundException("Branch don't exist")))
+                .map(branch -> {
+                    branch.setName(newName);
+                    return branch;
+                })
+                 .flatMap(branch -> this.branchRepository.save(branch))
+                 .map(branch -> this.branchMapper.toBranchDto(branch));
+
+        return branchDtoMono;
+    }
 }
 
 

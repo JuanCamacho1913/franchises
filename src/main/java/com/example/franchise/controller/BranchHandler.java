@@ -43,6 +43,21 @@ public class BranchHandler {
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(branchDtoResponse, BranchDto.class);
     }
+
+    public Mono<ServerResponse> updateNameBranch(ServerRequest serverRequest) {
+        String branchId = serverRequest.queryParam("idBranch")
+                .orElseThrow(() -> new BadRequestException("The branch don't exist"));
+
+        String newName = serverRequest.queryParam("newName")
+                .orElseThrow(() -> new BadRequestException("The new name don't be empty nor null"));
+
+        Mono<BranchDto> branchDtoMono = this.branchService.updateNameBranch(branchId, newName);
+
+        return ServerResponse
+                .ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(branchDtoMono, BranchDto.class);
+    }
 }
 
 

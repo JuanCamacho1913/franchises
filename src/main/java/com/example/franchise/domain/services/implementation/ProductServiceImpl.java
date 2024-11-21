@@ -56,6 +56,20 @@ public class ProductServiceImpl implements IProductService {
                                         )))
                 ).onErrorResume(errorAtributes -> Flux.empty());
     }
+
+    @Override
+    public Mono<ProductDto> updateNameProduct(String productId, String newName) {
+        Mono<ProductDto> productDtoMono = this.productRepository.findById(productId)
+                .switchIfEmpty(Mono.error(new ElementNotFoundException("The product don't exist")))
+                .map(product -> {
+                    product.setName(newName);
+                    return product;
+                })
+                .flatMap(product -> this.productRepository.save(product))
+                .map(product -> this.productMapper.toProductoDto(product));
+
+        return productDtoMono;
+    }
 }
 
 

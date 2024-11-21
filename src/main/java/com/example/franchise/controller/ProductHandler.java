@@ -47,6 +47,21 @@ public class ProductHandler {
                 .body(productDetailDtoFlux, ProductDetailDto.class);
 
     }
+
+    public Mono<ServerResponse> updateNameProduct(ServerRequest serverRequest) {
+        String productId = serverRequest.queryParam("idProduct")
+                .orElseThrow(() -> new BadRequestException("The product don't exist"));
+
+        String newName = serverRequest.queryParam("newName")
+                .orElseThrow(() -> new BadRequestException("The new name don't be empty nor null"));
+
+        Mono<ProductDto> productDtoMono = this.productService.updateNameProduct(productId, newName);
+
+        return ServerResponse
+                .ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(productDtoMono, ProductDto.class);
+    }
 }
 
 

@@ -22,11 +22,14 @@ public class AppController {
                 //Franchise
                 .route(RequestPredicates.POST("/v1/franchise/create"), franchiseHandler::createFranchise)
                 .andRoute(RequestPredicates.POST("/v1/franchise/branch/add/{idFranchise}"), franchiseHandler::addBranchToFranchise)
+                .andRoute(RequestPredicates.PUT("/v1/franchise/name/update"), franchiseHandler::updateNameFranchise)
                 //Braches
                 .andRoute(RequestPredicates.POST("/v1/branch/product/add/{idBranch}"), branchHandler::addProductToBranch)
                 .andRoute(RequestPredicates.POST("/v1/branch/product/remove"), branchHandler::removeProductFromBranch)
+                .andRoute(RequestPredicates.PUT("/v1/branch/name/update"), branchHandler::updateNameBranch)
                 //Product
                 .andRoute(RequestPredicates.PUT("/v1/product/stock"), productHandler::changeProductStock)
-                .andRoute(RequestPredicates.GET("/v1/product/stock/max"), productHandler::getLargestStockForFranquice);
+                .andRoute(RequestPredicates.GET("/v1/product/stock/max"), productHandler::getLargestStockForFranquice)
+                .andRoute(RequestPredicates.PUT("/v1/product/name/update"), productHandler::updateNameProduct);
     }
 }
