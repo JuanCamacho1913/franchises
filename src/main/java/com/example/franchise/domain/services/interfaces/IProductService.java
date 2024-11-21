@@ -11,4 +11,6 @@ public interface IProductService {
     public Mono<ProductDto> changeProductStock(String productId, Integer newStock);
 
     public Flux<ProductDetailDto> getLargestStockForFranchise(String franchiseId);
+
+    public Mono<ProductDto> updateNameProduct(String productId, String newName);
 }

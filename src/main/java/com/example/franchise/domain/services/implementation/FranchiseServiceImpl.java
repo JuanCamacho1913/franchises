@@ -52,6 +52,20 @@ public class FranchiseServiceImpl implements IFranchiseService {
 
         return franchiseDtoMono;
     }
+
+    @Override
+    public Mono<FranchiseDto> updateNameFranchise(String idFranchise, String newName) {
+        Mono<FranchiseDto> franchiseDtoMono = this.franchiseRepository.findById(idFranchise)
+                .switchIfEmpty(Mono.error(new ElementNotFoundException("Franchise don'n exist")))
+                .map(franchise -> {
+                    franchise.setName(newName);
+                    return franchise;
+                })
+                .flatMap(franchise -> this.franchiseRepository.save(franchise))
+                .map(franchise -> this.franchiseMapper.toFranchiseDto(franchise));
+
+        return franchiseDtoMono;
+    }
 }
 
 
