@@ -1,5 +1,6 @@
 package com.example.franchise.controller;
 
+import com.example.franchise.domain.exception.BadRequestException;
 import com.example.franchise.persistence.entities.Franchise;
 import com.example.franchise.presentation.dtos.BranchDto;
 import com.example.franchise.presentation.dtos.FranchiseDto;
@@ -32,6 +33,21 @@ public class FranchiseHandler {
         Mono<BranchDto> branchDtoMono = serverRequest.bodyToMono(BranchDto.class);
 
         Mono<FranchiseDto> franchiseDtoResponse = this.franchiseService.addBranchToFranchise(franchiseId, branchDtoMono);
+
+        return ServerResponse
+                .ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(franchiseDtoResponse, FranchiseDto.class);
+    }
+
+    public Mono<ServerResponse> updateNameFranchise(ServerRequest serverRequest) {
+        String franchiseId = serverRequest.queryParam("idFranchise")
+                .orElseThrow(() -> new BadRequestException("The franchise don't exist"));
+
+        String newNameFranchise = serverRequest.queryParam("newName")
+                .orElseThrow(() -> new BadRequestException("The new name don't be empty nor null"));
+
+        Mono<FranchiseDto> franchiseDtoResponse = this.franchiseService.updateNameFranchise(franchiseId, newNameFranchise);
 
         return ServerResponse
                 .ok()

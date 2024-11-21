@@ -10,6 +10,8 @@ public interface IFranchiseService {
 
     public Mono<FranchiseDto> addBranchToFranchise(String idFranchise, Mono<BranchDto> branchDto);
 
+    public Mono<FranchiseDto> updateNameFranchise(String idFranchise, String newName);
+
 
 
 
