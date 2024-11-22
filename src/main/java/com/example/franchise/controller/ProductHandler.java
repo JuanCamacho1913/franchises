@@ -35,7 +35,6 @@ public class ProductHandler {
     }
 
     public Mono<ServerResponse> getLargestStockForFranquice(ServerRequest serverRequest) {
-
         String franchiseId = serverRequest.queryParam("franchiseId")
                 .orElseThrow(() -> new BadRequestException("The franchiseId do not be empty nor null"));
 
