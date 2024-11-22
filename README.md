@@ -1,6 +1,6 @@
 ![Descripción alternativa](src/main/resources/static/franchise.jpg)
 
-# Documentación del Proyecto Franchise
+# Documentación del Proyecto Franchise 
 
 ## Descripción
 **La aplicación facilita la gestión descentralizada de negocios con múltiples ubicaciones, permitiendo un control detallado de cada franquicia, sus sucursales y el inventario de productos en cada punto de venta. Esto es útil para empresas con estructura de franquiciamiento que necesitan un sistema centralizado pero flexible para administrar sus operaciones.**
