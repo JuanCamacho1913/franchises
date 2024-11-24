@@ -42,6 +42,10 @@ A continuación, se describen algunas de las clases principales del proyecto:
 
 ### Rutas:
 
+**URL:**
+```properties
+http://localhost:8080
+```
 **Franchise:**
 
 - **POST**
